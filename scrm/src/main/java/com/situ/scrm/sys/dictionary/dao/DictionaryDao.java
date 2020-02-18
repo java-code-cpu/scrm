@@ -1,10 +1,4 @@
-/**
- * @Company:中享思途   
- * @Title:SysResourceDao.java 
- * @Author:wxinpeng   
- * @Date:2020年2月13日 下午2:33:48     
- */
-package com.situ.scrm.sys.sysresource.dao;
+package com.situ.scrm.sys.dictionary.dao;
 
 import java.util.List;
 
@@ -12,14 +6,10 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.situ.scrm.commons.dao.BaseDao;
-import com.situ.scrm.sys.sysresource.domain.SysResource;
+import com.situ.scrm.sys.dictionary.doamin.Dictionary;
 
-/**
- * @ClassName:SysResourceDao
- * @Description:(系统资源的DAO层)
- */
 @Repository
-public interface SysResourceDao extends BaseDao<SysResource> {
+public interface DictionaryDao extends BaseDao<Dictionary> {
 	/**
 	 * @Title: getByNameAndParent
 	 * @Description:(根据Name和parentCode查询实例)
@@ -27,7 +17,7 @@ public interface SysResourceDao extends BaseDao<SysResource> {
 	 * @param parentCode
 	 * @return
 	 */
-	SysResource getByNameAndParent(@Param("rescName") String rescName, @Param("parentCode") String parentCode);
+	Dictionary getByNameAndParent(@Param("sucName") String sucName, @Param("parentCode") String parentCode);
 
 	/**
 	 * @Title: getMaxOrder
@@ -42,7 +32,7 @@ public interface SysResourceDao extends BaseDao<SysResource> {
 	 * @Description:(更新是否有子元素)
 	 * @param hasChild
 	 */
-	void updateHasChild(@Param("rescCode") String rescCode, @Param("hasChild") Integer hasChild);
+	void updateHasChild(@Param("sucCode") String sucCode, @Param("hasChild") Integer hasChild);
 
 	/**
 	 * @Title: getByCode
@@ -50,7 +40,7 @@ public interface SysResourceDao extends BaseDao<SysResource> {
 	 * @param rescCode
 	 * @return
 	 */
-	SysResource getByCode(String rescCode);
+	Dictionary getByCode(String sucCode);
 
 	/**
 	 * @Title: findByParent
@@ -58,7 +48,7 @@ public interface SysResourceDao extends BaseDao<SysResource> {
 	 * @param parentCode
 	 * @return
 	 */
-	List<SysResource> findByParent(String parentCode);
+	List<Dictionary> findByParent(String parentCode);
 	
 	/**
 	 * @Title: findByParent

@@ -115,7 +115,7 @@ public class RoleController implements Serializable {
 	 */
 	@GetMapping("/{rowId}")
 	public Role goEditRole(@PathVariable Long rowId) {
-		return roleService.getRole(rowId);
+		return roleService.getRoleById(rowId);
 	}
 
 	/**
