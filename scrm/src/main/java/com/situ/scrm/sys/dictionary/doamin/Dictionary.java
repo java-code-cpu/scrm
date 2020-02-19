@@ -19,6 +19,7 @@ public class Dictionary extends BaseClass implements Serializable {
 
 	// 额外的元素
 	private List<Dictionary> children;// 子元素的数据
+	private String parentName;  //元素的父级目录
 
 	public String getParentCode() {
 		return parentCode;
@@ -66,6 +67,14 @@ public class Dictionary extends BaseClass implements Serializable {
 
 	public void setChildren(List<Dictionary> children) {
 		this.children = children;
+	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
 	}
 
 	public Dictionary(String parentCode, String sucCode, String sucName, Integer sucOrder, Integer hasChild) {

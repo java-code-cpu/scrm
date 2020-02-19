@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.situ.scrm.sys.system.dao.SystemDao">
+	<sql id="system_base_select">
+		HIGH_SEAS,DOC_REMINDER,CONFIG1,ACTIVE_FLAG,CREATE_BY,CREATE_DATE
+	</sql>
+	<select id="findById" resultType="System">
+		SELECT ROW_ID,
+		<include refid="system_base_select"/>
+		,UPDATE_BY,UPDATE_DATE FROM BT_SYS_SYSTEM WHERE ACTIVE_FLAG = 1
+	</select>
+	<insert id="save" useGeneratedKeys="true" keyProperty="rowId">
+		INSERT INTO BT_SYS_SYSTEM (
+			<include refid="system_base_select"/>
+		)
+		VALUES (#{highSeas},#{docReminder},#{config1},#{activeFlag},#{createBy},#{createDate})
+	</insert>
+	<update id="update">
+		UPDATE BT_SYS_SYSTEM
+		<set>
+			<if test="highSeas != null">
+				HIGH_SEAS = #{highSeas},
+			</if>
+			<if test="docReminder != null">
+				DOC_REMINDER = #{docReminder},
+			</if>
+			<if test="config1 != null">
+				CONFIG1 = #{config1},
+			</if>
+			<if test="activeFlag != null">
+				ACTIVE_FLAG = #{activeFlag},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY = #{createBy},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE = #{createDate},
+			</if>
+		</set>
+		WHERE ROW_ID = #{rowId}
+	</update>
+</mapper>

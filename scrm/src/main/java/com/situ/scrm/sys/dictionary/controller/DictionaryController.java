@@ -7,13 +7,16 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.situ.scrm.commons.domain.LayResult;
+import com.situ.scrm.sys.dictionary.dao.DictionaryDao;
 import com.situ.scrm.sys.dictionary.doamin.Dictionary;
 import com.situ.scrm.sys.dictionary.service.DictionaryService;
+import com.situ.scrm.sys.sysresource.domain.SysResource;
 
 @RestController
 @RequestMapping("dictionary")
@@ -93,5 +96,38 @@ public class DictionaryController implements Serializable {
 	@DeleteMapping("/{rowId}")
 	public Integer doDeleteDictionary(@PathVariable Long rowId) {
 		return dictionaryservice.doDeleteDictionary(rowId);
+	}
+	
+	/**
+	 * @Title: checkDicName
+	 * @Description:(检测名称唯一)
+	 * @return
+	 */
+	@GetMapping("/checkname")
+	public Integer checkDicName(String sucName, String parentCode) {
+		return dictionaryservice.checksucName(sucName, parentCode);
+	}
+	
+	/**
+	 * @Title: updateDictionary
+	 * @Description:(修改资源)
+	 * @param sysResource
+	 * @return
+	 */
+	@PutMapping
+	public Long updateDictionary(Dictionary dictionary) {
+		return dictionaryservice.updateDictionary(dictionary);
+	}
+	
+	/**
+	 * @Title: getResourceById
+	 * @Description:(进修改)
+	 * @param rowId
+	 * @return
+	 */
+	@GetMapping("/{rowId}")
+	public Dictionary getResourceById(@PathVariable Long rowId) {
+		Dictionary dictionary = dictionaryservice.getDictionaryById(rowId);
+		return dictionary;
 	}
 }

@@ -75,7 +75,7 @@
 	</select>
 	<select id="getByNameAndParent" resultType="Dictionary">
 		<include refid="dictionary_base_select" />
-		AND SUC_NAME = #{rescName} AND PARENT_CODE = #{parentCode}
+		AND SUC_NAME = #{sucName} AND PARENT_CODE = #{parentCode}
 	</select>
 	<select id="getByCode" resultType="Dictionary">
 		<include refid="dictionary_base_select" />

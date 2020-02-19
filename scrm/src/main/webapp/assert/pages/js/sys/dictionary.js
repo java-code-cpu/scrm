@@ -80,7 +80,7 @@ layui.use(['layer', 'util', 'treeTable','iconPicker'], function () {
 							// 让form表单渲染一下。 form_add_edit = <form lay-filter="form_add_edit">
 							form.render(null, 'form_add_edit');
 							// 父类名称
-							var parentName = obj.parentName;
+							var parentName = obj.sucName;
 							if(parentName){
 								$('#parentName').html(parentName);
 							}
@@ -203,8 +203,8 @@ layui.use(['layer', 'util', 'treeTable','iconPicker'], function () {
         });
         //自定义 校验
         form.verify({
-        	checkrescname:function(value,item){
-        		return checkUnique(value, item,'sysresource/checkname',{"parentCode":$('#parentCode').val()})
+        	checkdicname:function(value,item){
+        		return checkUnique(value, item,'dictionary/checkname',{"parentCode":$('#parentCode').val()})
         	}
         });
         //绑定 资源类型 select 

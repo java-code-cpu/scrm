@@ -16,6 +16,7 @@ import com.situ.scrm.sys.dictionary.dao.DictionaryDao;
 import com.situ.scrm.sys.dictionary.doamin.Dictionary;
 import com.situ.scrm.sys.dictionary.service.DictionaryService;
 import com.situ.scrm.sys.syscount.util.SysCountUtils;
+import com.situ.scrm.utils.DAOUtils;
 
 @Service
 public class DictionaryServiceImpl implements DictionaryService {
@@ -24,9 +25,18 @@ public class DictionaryServiceImpl implements DictionaryService {
 	@Autowired
 	private SysCountUtils sysCountUtils;
 
+	
+	/**
+	 * 进修改
+	 */
 	@Override
 	public Dictionary getDictionaryById(Long rowId) {
-		return dictionarydao.get(rowId);
+		Dictionary dictionary = dictionarydao.get(rowId);
+		String parentCode = dictionary.getParentCode();
+		Dictionary parentDictionary = dictionarydao.getByCode(parentCode);
+		String parentName = parentDictionary.getSucName();
+		dictionary.setParentName(parentName);
+		return dictionary;
 	}
 	
 	@Override
@@ -134,23 +144,39 @@ public class DictionaryServiceImpl implements DictionaryService {
 		dictionary.setActiveFlag(1);
 		dictionary.setCreateBy("sys");
 		dictionary.setCreateDate(new Date());
-		System.out.println(dictionary);
 		dictionarydao.save(dictionary);
 		return dictionary.getRowId();
 	}
 
+	/**
+	 * @Title: updateSysResource
+	 * @Description:(修改资源信息)
+	 * @param sysResource
+	 * @return
+	 */
 	@Override
 	public Long updateDictionary(Dictionary dictionary) {
-		// TODO Auto-generated method stub
-		return null;
+		Long rowId = dictionary.getRowId();
+		Dictionary editDictionary = dictionarydao.get(rowId);
+		editDictionary = DAOUtils.buildEditData(editDictionary, dictionary);
+		editDictionary.setUpdateBy("sys");
+		editDictionary.setUpdateDate(new Date());
+		dictionarydao.update(editDictionary);
+		return rowId;
 	}
 
 	@Override
 	public Integer checksucName(String sucName, String parentCode) {
-		// TODO Auto-generated method stub
-		return null;
+		Dictionary dictionary = dictionarydao.getByNameAndParent(sucName, parentCode);
+		return dictionary == null ? 0 : 1;
 	}
-
+	
+	/**
+	 * @Title: saveSysResource
+	 * @Description:(删除)
+	 * @param sysResource
+	 * @return
+	 */
 	@Override
 	public Integer doDeleteDictionary(Long rowId) {
 		Dictionary deleteDictionary = dictionarydao.get(rowId);
@@ -161,7 +187,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		if(!parentCode.equals(Dictionary.DEFAULT_PARENT_CODE)) {
 			//修改父类的资源是否有子元素
 			Integer hasChild = 0;
-			List<Dictionary> dictionaryList = dictionarydao.findByParent(sucCode);
+			List<Dictionary> dictionaryList = dictionarydao.findByParent(parentCode);
 			if(dictionaryList != null && !dictionaryList.isEmpty()) {
 				hasChild = 1;
 			}

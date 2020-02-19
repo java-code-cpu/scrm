@@ -11,6 +11,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.situ.scrm.commons.domain.Pagination;
+import com.situ.scrm.sys.system.domain.System1;
+import com.situ.scrm.sys.user.domain.User;
 
 /** 
  * @ClassName:BaseDao 

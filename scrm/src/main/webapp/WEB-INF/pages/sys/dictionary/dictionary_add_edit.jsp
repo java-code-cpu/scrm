@@ -18,7 +18,7 @@
 			<div class="layui-input-inline"  style="width: 300px;">
 				<!-- lay-verify 这个layui的自定义属性 ，设置表单的校验，多个校验 用 ‘|’ 隔开  -->
 				<!-- class ='check-unique' 放置在此处用于通用JS脚本修改的时候使用-->
-				<input name="sucName" lay-verify="required|checkrescname" id="sucName" class="layui-input check-unique" placeholder="请输入资源名称" autocomplete="off">
+				<input name="sucName" lay-verify="required|checkdicname" id="sucName" class="layui-input check-unique" placeholder="请输入资源名称" autocomplete="off">
 			</div>
 		</div>
 	</div>

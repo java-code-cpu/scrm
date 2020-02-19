@@ -95,6 +95,9 @@
 							<dd>
 								<a href="customer">客户管理</a>
 							</dd>
+							<dd>
+								<a href="system">系统设置</a>
+							</dd>
 						</dl></li>
 					<li class="layui-nav-item"><a href="">云市场</a></li>
 					<li class="layui-nav-item"><a href="">发布商品</a></li>
