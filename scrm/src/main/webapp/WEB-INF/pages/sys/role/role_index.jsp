@@ -83,3 +83,4 @@
 </script>
 <!-- 引入自定义的JS脚本 -->
 <script type="text/javascript" src="assert/pages/js/sys/role.js"></script>
+<script type="text/javascript" src="assert/pages/js/app_core2.js"></script>

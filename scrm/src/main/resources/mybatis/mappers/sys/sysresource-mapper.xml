@@ -91,4 +91,7 @@
 	<delete id="delete">
 		DELETE FROM BT_SYS_SYS_RESOURCE WHERE ROW_ID = #{rowId}
 	</delete>
+	<select id="findIdByParent" resultType="java.lang.Long">
+		SELECT ROW_ID FROM BT_SYS_SYS_RESOURCE WHERE ACTIVE_FLAG = 1 AND PARENT_CODE = #{parentCode}
+	</select>
 </mapper>
